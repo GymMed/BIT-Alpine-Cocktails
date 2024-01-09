@@ -1,0 +1,72 @@
+<script>
+    window.cocktailsMenuData = function () {
+        return {
+            cocktails: [],
+            initCocktailMenu() {
+                // this.getAllCocktails();
+                this.$store.cocktailFilter.filter();
+            },
+            async getAllCocktails() {
+                this.cocktails =
+                    await this.$store.fetchedCocktailData.getAllDrinks();
+            },
+            async showModal(index) {
+                const fetchedCocktail = await fetch(
+                    CocktailDB.getCocktailById(this.cocktails[index].idDrink)
+                ).then((response) => response.json());
+
+                this.$dispatch("show-modal", {
+                    data: {
+                        cocktail: fetchedCocktail.drinks[0],
+                    },
+                });
+            },
+            changeCocktails(event) {
+                this.cocktails = event.detail.data.cocktails;
+            },
+        };
+    };
+</script>
+<div
+    x-data="cocktailsMenuData();"
+    x-init="initCocktailMenu();"
+    @change-cocktails.window="changeCocktails($event);"
+>
+    <template x-if="cocktails">
+        <div
+            x-show="cocktails"
+            class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 gap-4"
+        >
+            <template x-for="(cocktail, index) in cocktails">
+                <div
+                    class="group pb-1 flex flex-col items-center gap-1 w-32 shadow-lg rounded"
+                    @click="showModal(index);"
+                >
+                    <div
+                        class="w-32 h-32 min-h-32 min-w-32 relative overflow-hidden rounded"
+                    >
+                        <img
+                            :src="cocktail.strDrinkThumb"
+                            alt="Cocktail Image"
+                            width=""
+                            height=""
+                            class="transition-transform duration-1000 ease-linear group-hover:scale-125"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div
+                        class="h-full flex items-center justify-center font-bold text-purple-500 italic text-center"
+                        x-text="cocktail.strDrink"
+                    ></div>
+                </div>
+            </template>
+        </div>
+    </template>
+    <template x-if="!cocktails || UtilityHelpers.isEmptyArray(cocktails)">
+        <div
+            class="font-bold text-xl flex items-center justify-center text-purple-500"
+        >
+            No cocktails found!
+        </div>
+    </template>
+</div>

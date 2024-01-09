@@ -1,0 +1,129 @@
+<script>
+    window.dialogModalData = function () {
+        return {
+            data: { cocktail: {} },
+            showModal(event) {
+                this.$refs.dialogWindow.showModal();
+                this.data = event.detail.data;
+            },
+            closeModal(event) {
+                this.$refs.dialogWindow.close();
+            },
+            clickModal(event) {
+                if (event.target === this.$refs.dialogWindow) {
+                    this.$refs.dialogWindow.close();
+                }
+            },
+            getNotNullIngredients() {
+                const notNullIngredients = [];
+                const totalIngredients = 15;
+                let measurement = "";
+
+                for (
+                    let currentIngredient = 1;
+                    currentIngredient < totalIngredients;
+                    currentIngredient++
+                ) {
+                    if (
+                        !this.data.cocktail.hasOwnProperty(
+                            `strIngredient${currentIngredient}`
+                        )
+                    ) {
+                        continue;
+                    } else if (
+                        !this.data.cocktail[`strIngredient${currentIngredient}`]
+                    ) {
+                        continue;
+                    }
+
+                    if (
+                        this.data.cocktail.hasOwnProperty(
+                            `strMeasure${currentIngredient}`
+                        ) &&
+                        this.data.cocktail[`strMeasure${currentIngredient}`]
+                    ) {
+                        measurement =
+                            this.data.cocktail[
+                                `strMeasure${currentIngredient}`
+                            ];
+                    } else measurement = "";
+
+                    notNullIngredients.push({
+                        name: this.data.cocktail[
+                            `strIngredient${currentIngredient}`
+                        ],
+                        measure: measurement,
+                    });
+                }
+
+                return notNullIngredients;
+            },
+        };
+    };
+</script>
+<dialog
+    x-data="dialogModalData();"
+    @show-modal.window="showModal(event);"
+    @close-modal.window="closeModal(event);"
+    @click="clickModal(event);"
+    x-ref="dialogWindow"
+    class="rounded-lg shadow-lg w-8/12"
+>
+    <div class="p-3 rounded-lg shadow-lg flex flex-col gap-2">
+        <div class="flex items-center justify-center">
+            <img
+                :src="data.cocktail.strDrinkThumb"
+                alt="Cocktail image"
+                class="w-52 h-52 rounded shadow"
+            />
+        </div>
+        <div
+            class="text-center text-2xl font-bold text-purple-500 italic"
+            x-text="data.cocktail.strDrink"
+        ></div>
+        <div class="flex gap-3">
+            <div class="font-bold w-1/4">Category:</div>
+            <div class="w-3/4" x-text="data.cocktail.strCategory"></div>
+        </div>
+        <div class="flex gap-3">
+            <div class="font-bold w-1/4">Alcohol:</div>
+            <div class="w-3/4" x-text="data.cocktail.strAlcoholic"></div>
+        </div>
+        <div class="flex gap-3">
+            <div class="font-bold w-1/4">Glass type:</div>
+            <div class="w-3/4" x-text="data.cocktail.strGlass"></div>
+        </div>
+        <div class="flex gap-3">
+            <div class="font-bold w-1/4">Ingredients:</div>
+            <div class="flex flex-col gap-1 w-3/4">
+                <template x-for="(ingredient, key) in getNotNullIngredients()">
+                    <div class="flex gap-0">
+                        <div
+                            x-text="ingredient.measure + (ingredient.measure ? '&nbsp;' : '')"
+                        ></div>
+                        <div
+                            x-text="ingredient.name"
+                            class="text-yellow-600"
+                        ></div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <div class="flex gap-3">
+            <div class="font-bold w-1/4">Recipe:</div>
+            <div
+                class="w-3/4"
+                x-text="data.cocktail.strInstructions ? data.cocktail.strInstructions : 'Currently unavailable! Check later!'"
+            ></div>
+        </div>
+        <div class="flex justify-end">
+            <button
+                type="button"
+                class="text-white font-semibold bg-gradient-to-br from-red-500 to-red-700 hover:from-red-700 hover:to-red-900 rounded"
+                @click="closeModal(event);"
+            >
+                <div class="hover:scale-110 px-4 py-1">Close</div>
+            </button>
+        </div>
+    </div>
+</dialog>

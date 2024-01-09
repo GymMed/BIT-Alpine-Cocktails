@@ -1,0 +1,54 @@
+<script>
+    window.charactersFilterData = function () {
+        return {
+            startingCharacterCode: 65,
+            endingCharacterCode: 90,
+            getCharacters() {
+                const arrayOfCharacters = [];
+
+                for (
+                    let currentCharacter = this.startingCharacterCode;
+                    currentCharacter < this.endingCharacterCode;
+                    currentCharacter++
+                ) {
+                    arrayOfCharacters.push(
+                        String.fromCharCode(currentCharacter)
+                    );
+                }
+
+                return arrayOfCharacters;
+            },
+            async filterByCharacter(character) {
+                const filteredDrinks = await fetch(
+                    CocktailDB.getCocktailsByFirstLetter(character)
+                ).then((response) => response.json());
+
+                this.$dispatch("change-cocktails", {
+                    data: {
+                        cocktails: filteredDrinks.drinks,
+                    },
+                });
+            },
+        };
+    };
+</script>
+<div
+    x-data="charactersFilterData();"
+    class="flex flex-wrap gap-1 items-center justify-center text-white font-bold"
+>
+    <template x-for="(character, index) in getCharacters()">
+        <div class="flex gap-1">
+            <div
+                class="hover:scale-125 hover:text-purple-300"
+                x-text="character"
+                @click="filterByCharacter(character)"
+            ></div>
+            <div x-text="'/'"></div>
+        </div>
+    </template>
+    <div
+        class="hover:scale-125 hover:text-purple-300"
+        x-text="String.fromCharCode(endingCharacterCode)"
+        @click="filterByCharacter(String.fromCharCode(endingCharacterCode))"
+    ></div>
+</div>
