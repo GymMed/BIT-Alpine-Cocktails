@@ -21,6 +21,14 @@ class CocktailDB {
         return `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${glass}`;
     }
 
+    static getFilteredByAlcoholic() {
+        return `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic`;
+    }
+
+    static getFilteredByNotAlcoholic() {
+        return `https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Non_Alcoholic`;
+    }
+
     static getCocktailById(id) {
         return `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
     }

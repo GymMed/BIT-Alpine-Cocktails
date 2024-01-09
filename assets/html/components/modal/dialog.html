@@ -14,6 +14,32 @@
                     this.$refs.dialogWindow.close();
                 }
             },
+            async filterNotAlcoholicCocktails() {
+                this.closeModal();
+
+                const filteredDrinks = await fetch(
+                    CocktailDB.getFilteredByNotAlcoholic()
+                ).then((response) => response.json());
+
+                this.$dispatch("change-cocktails", {
+                    data: {
+                        cocktails: filteredDrinks.drinks,
+                    },
+                });
+            },
+            async filterAlcoholicCocktails() {
+                this.closeModal();
+
+                const filteredDrinks = await fetch(
+                    CocktailDB.getFilteredByAlcoholic()
+                ).then((response) => response.json());
+
+                this.$dispatch("change-cocktails", {
+                    data: {
+                        cocktails: filteredDrinks.drinks,
+                    },
+                });
+            },
             getNotNullIngredients() {
                 const notNullIngredients = [];
                 const totalIngredients = 15;
@@ -87,7 +113,18 @@
         </div>
         <div class="flex gap-3">
             <div class="font-bold w-1/4">Alcohol:</div>
-            <div class="w-3/4" x-text="data.cocktail.strAlcoholic"></div>
+            <div class="w-3/4">
+                <button
+                    type="button"
+                    class="text-white font-semibold bg-gradient-to-br from-red-500 to-red-700 hover:from-red-700 hover:to-red-900 rounded"
+                    @click="data.cocktail.strAlcoholic === 'Alcoholic' ? filterAlcoholicCocktails() : filterNotAlcoholicCocktails() "
+                >
+                    <div
+                        class="hover:scale-110 px-4 py-1"
+                        x-text="data.cocktail.strAlcoholic"
+                    ></div>
+                </button>
+            </div>
         </div>
         <div class="flex gap-3">
             <div class="font-bold w-1/4">Glass type:</div>
