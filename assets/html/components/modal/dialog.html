@@ -100,7 +100,7 @@
             <img
                 :src="data.cocktail.strDrinkThumb"
                 alt="Cocktail image"
-                class="w-52 h-52 rounded shadow"
+                class="max-sm:h-full max-sm:w-full sm:w-full sm:h-full md:w-64 md:h-64 lg:w-96 lg:h-96 rounded shadow"
             />
         </div>
         <div
@@ -108,12 +108,15 @@
             x-text="data.cocktail.strDrink"
         ></div>
         <div class="flex gap-3">
-            <div class="font-bold w-1/4">Category:</div>
-            <div class="w-3/4" x-text="data.cocktail.strCategory"></div>
+            <div class="font-bold w-1/4 max-sm:w-1/3">Category:</div>
+            <div
+                class="w-3/4 max-sm:w-2/3"
+                x-text="data.cocktail.strCategory"
+            ></div>
         </div>
         <div class="flex gap-3">
-            <div class="font-bold w-1/4">Alcohol:</div>
-            <div class="w-3/4">
+            <div class="font-bold w-1/4 max-sm:w-1/3">Alcohol:</div>
+            <div class="w-3/4 max-sm:w-2/3">
                 <button
                     type="button"
                     class="text-white font-semibold bg-gradient-to-br from-red-500 to-red-700 hover:from-red-700 hover:to-red-900 rounded"
@@ -127,12 +130,15 @@
             </div>
         </div>
         <div class="flex gap-3">
-            <div class="font-bold w-1/4">Glass type:</div>
-            <div class="w-3/4" x-text="data.cocktail.strGlass"></div>
+            <div class="font-bold w-1/4 max-sm:w-1/3">Glass type:</div>
+            <div
+                class="w-3/4 max-sm:w-2/3"
+                x-text="data.cocktail.strGlass"
+            ></div>
         </div>
         <div class="flex gap-3">
-            <div class="font-bold w-1/4">Ingredients:</div>
-            <div class="flex flex-col gap-1 w-3/4">
+            <div class="font-bold w-1/4 max-sm:w-1/3">Ingredients:</div>
+            <div class="flex flex-col gap-1 w-3/4 max-sm:w-2/3">
                 <template x-for="(ingredient, key) in getNotNullIngredients()">
                     <div class="flex gap-0">
                         <div
@@ -147,9 +153,9 @@
             </div>
         </div>
         <div class="flex gap-3">
-            <div class="font-bold w-1/4">Recipe:</div>
+            <div class="font-bold w-1/4 max-sm:w-1/3">Recipe:</div>
             <div
-                class="w-3/4"
+                class="w-3/4 max-sm:w-2/3"
                 x-text="data.cocktail.strInstructions ? data.cocktail.strInstructions : 'Currently unavailable! Check later!'"
             ></div>
         </div>
