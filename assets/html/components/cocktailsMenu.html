@@ -35,15 +35,15 @@
     <template x-if="cocktails">
         <div
             x-show="cocktails"
-            class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 gap-4"
+            class="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-3 gap-4 max-sm:flex max-sm:flex-col max-sm:gap-5"
         >
             <template x-for="(cocktail, index) in cocktails">
                 <div
-                    class="group pb-1 flex flex-col items-center gap-1 w-32 shadow-lg rounded"
+                    class="group pb-1 flex flex-col items-center gap-1 max-sm:h-auto max-sm:w-auto sm:w-44 md:w-48 lg:w-52 shadow-lg rounded"
                     @click="showModal(index);"
                 >
                     <div
-                        class="w-32 h-32 min-h-32 min-w-32 relative overflow-hidden rounded"
+                        class="max-sm:min-h-full max-sm:min-w-auto sm:w-40 sm:h-40 sm:min-h-40 sm:min-w-40 md:w-48 md:h-48 md:min-h-48 md:min-w-48 lg:w-52 lg:h-52 lg:min-h-52 lg:min-w-52 relative overflow-hidden rounded"
                     >
                         <img
                             :src="cocktail.strDrinkThumb"

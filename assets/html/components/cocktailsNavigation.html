@@ -49,7 +49,7 @@
     class="bg-gradient-to-b bg-purple-950 p-4 shadow-lg flex flex-col gap-1"
 >
     <div
-        class="flex justify-center items-center gap-3 sm:flex-col md:flex-col lg:flex-row"
+        class="flex justify-center items-center gap-3 max-sm:flex-col sm:flex-col md:flex-col lg:flex-row"
     >
         <input
             type="text"
@@ -57,13 +57,13 @@
             id="cocktailName"
             x-model="cocktailNameValue"
             x-init="cocktailNameValue = $store.cocktailFilter.name"
-            class="sm:w-full md:w-full lg:w-auto p-2 border-2 rounded-md text-purple-500 focus:ring placeholder-purple-500 focus:ring-offset-white focus:ring-purple-500 focus:ring-offset-2"
+            class="max-sm:w-full sm:w-full md:w-full lg:w-auto p-2 border-2 rounded-md text-purple-500 focus:ring placeholder-purple-500 focus:ring-offset-white focus:ring-purple-500 focus:ring-offset-2"
             placeholder="Cocktail Name . . ."
         />
         <select
             name="selectCategory"
             id="selectCategory"
-            class="sm:w-full md:w-full lg:w-auto p-2 font-semibold text-purple-600 placeholder-purple-200 border-2 rounded-md focus:ring-blue-500 focus:ring focus:ring-offset-2 focus:ring-offset-white"
+            class="max-sm:w-full sm:w-full md:w-full lg:w-auto p-2 font-semibold text-purple-600 placeholder-purple-200 border-2 rounded-md focus:ring-blue-500 focus:ring focus:ring-offset-2 focus:ring-offset-white"
             x-model="categoryValue"
             x-init="categoryValue = $store.cocktailFilter.category"
         >
@@ -81,7 +81,7 @@
         <select
             name="selectIngredient"
             id="selectIngredient"
-            class="sm:w-full md:w-full lg:w-auto p-2 font-semibold text-purple-600 placeholder-purple-200 border-2 rounded-md focus:ring-blue-500 focus:ring focus:ring-offset-2 focus:ring-offset-white"
+            class="max-sm:w-full sm:w-full md:w-full lg:w-auto p-2 font-semibold text-purple-600 placeholder-purple-200 border-2 rounded-md focus:ring-blue-500 focus:ring focus:ring-offset-2 focus:ring-offset-white"
             x-model="ingredientValue"
             x-init="ingredientValue = $store.cocktailFilter.ingredient"
         >
@@ -99,7 +99,7 @@
         <select
             name="selectGlass"
             id="selectGlass"
-            class="sm:w-full md:w-full lg:w-auto p-2 font-semibold text-purple-600 placeholder-purple-200 border-2 rounded-md focus:ring-blue-500 focus:ring focus:ring-offset-2 focus:ring-offset-white"
+            class="max-sm:w-full sm:w-full md:w-full lg:w-auto p-2 font-semibold text-purple-600 placeholder-purple-200 border-2 rounded-md focus:ring-blue-500 focus:ring focus:ring-offset-2 focus:ring-offset-white"
             x-model="glassValue"
             x-init="glassValue = $store.cocktailFilter.glass"
         >
@@ -116,14 +116,14 @@
         </select>
         <button
             type="button"
-            class="sm:w-full md:w-full lg:w-auto bg-gradient-to-br from-purple-500 to-purple-700 hover:from-purple-700 hover:to-purple-900 text-white font-semibold rounded focus:ring focus:ring-offset-white focus:ring-purple-500 focus:ring-offset-2"
+            class="max-sm:w-full sm:w-full md:w-full lg:w-auto bg-gradient-to-br from-purple-500 to-purple-700 hover:from-purple-700 hover:to-purple-900 text-white font-semibold rounded focus:ring focus:ring-offset-white focus:ring-purple-500 focus:ring-offset-2"
             @click="searchCocktail();"
         >
             <div class="hover:scale-110 px-4 py-1">Search</div>
         </button>
         <button
             type="button"
-            class="sm:w-full md:w-full lg:w-auto bg-gradient-to-br from-purple-500 to-purple-700 hover:from-purple-700 hover:to-purple-900 text-white font-semibold rounded focus:ring focus:ring-offset-white focus:ring-purple-500 focus:ring-offset-2"
+            class="max-sm:w-full sm:w-full md:w-full lg:w-auto bg-gradient-to-br from-purple-500 to-purple-700 hover:from-purple-700 hover:to-purple-900 text-white font-semibold rounded focus:ring focus:ring-offset-white focus:ring-purple-500 focus:ring-offset-2"
             @click="showLuckyModal();"
         >
             <div class="hover:scale-110 px-4 py-1">I am lucky</div>
