@@ -39,11 +39,11 @@
         >
             <template x-for="(cocktail, index) in cocktails">
                 <div
-                    class="group pb-1 flex flex-col items-center gap-1 max-sm:h-auto max-sm:w-auto sm:w-44 md:w-48 lg:w-52 shadow-lg rounded"
+                    class="group pb-1 flex flex-col items-center gap-1 max-sm:h-auto max-sm:w-auto sm:w-44 md:w-48 lg:w-52 xl:w-64 2xl:w-72 shadow-lg rounded"
                     @click="showModal(index);"
                 >
                     <div
-                        class="max-sm:min-h-full max-sm:min-w-auto sm:w-40 sm:h-40 sm:min-h-40 sm:min-w-40 md:w-48 md:h-48 md:min-h-48 md:min-w-48 lg:w-52 lg:h-52 lg:min-h-52 lg:min-w-52 relative overflow-hidden rounded"
+                        class="max-sm:min-h-full max-sm:min-w-auto sm:w-40 sm:h-40 sm:min-h-40 sm:min-w-40 md:w-48 md:h-48 md:min-h-48 md:min-w-48 lg:w-52 lg:h-52 lg:min-h-52 lg:min-w-52 xl:w-64 xl:h-64 xl:min-w-64 xl:min-h-64 2xl:w-72 2xl:h-72 2xl:min-w-72 2xl:min-h-72 relative overflow-hidden rounded"
                     >
                         <img
                             :src="cocktail.strDrinkThumb"
